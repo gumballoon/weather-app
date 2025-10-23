@@ -55,7 +55,7 @@ export default function LocationForm({ setLocation, setIsError, setIsFound }) {
 
   return (
     <form
-      className="sm:max-w-120 mx-auto my-8 flex flex-col sm:flex-row justify-center items-center gap-2"
+      className="sm:max-w-140 mx-auto my-8 flex flex-col sm:flex-row justify-center items-center gap-2"
       onSubmit={handleSubmit}
     >
       <div className="bg-neutral-700 py-3 px-4 flex items-center gap-2 rounded-md w-full relative">
@@ -70,11 +70,11 @@ export default function LocationForm({ setLocation, setIsError, setIsFound }) {
           value={searchValue}
           onInput={(e) => setSearchValue(e.target.value)}
         />
-        <div className="absolute w-full bg-neutral-700 top-15 left-0 rounded-md h-min">
+        <div className="absolute w-full bg-neutral-700 top-14 left-0 rounded-md h-min">
           {isSearchLoading ? (
             <div className="flex items-center py-3 px-4">
               <IconLoading />
-              <p className="ml-2 text-sm">Search in progress</p>
+              <p className="ml-2 text-sm">Search in progress</p>  
             </div>
           ) : (
             <div className="flex flex-col">
@@ -95,7 +95,7 @@ export default function LocationForm({ setLocation, setIsError, setIsFound }) {
       </div>
       <button
         type="submit"
-        className="bg-blue-500 py-3 px-4 rounded-md hover:cursor-pointer w-full sm:w-min"
+        className="bg-blue-500 py-3 px-6 rounded-md hover:cursor-pointer w-full sm:w-min"
       >
         Search
       </button>

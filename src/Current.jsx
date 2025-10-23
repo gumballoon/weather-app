@@ -25,7 +25,7 @@ export default function Current({ isLoading, place, current, units }) {
 
             <div className="flex items-center justify-between gap-6 xl:gap-0">
               <WeatherIcon code={current.weather_code} size="large" />
-              <i className="text-8xl font-semibold">
+              <i className="text-7xl xl:text-8xl font-semibold">
                 {current.temperature_2m}°
               </i>
             </div>

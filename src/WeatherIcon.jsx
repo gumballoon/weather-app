@@ -50,7 +50,7 @@ const icons = {
 const sizes = {
   small: "w-8 h-8",
   medium: "w-16 h-16",
-  large: "w-36 h-36",
+  large: "w-32 h-32",
 };
 
 export default function WeatherIcon({ code = "default", size = "medium" }) {

@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
-
 import HourlyStatistic from "./HourlyStatistic";
-import { format } from "date-and-time";
 import IconDropdown from "./assets/icon-dropdown.svg?react";
+
+import { useState, useEffect, useRef } from "react";
+import { format } from "date-and-time";
 
 export default function Hourly({ isLoading, hourly }) {
   // to get the current time index on the 7-day hourly object
@@ -19,6 +19,15 @@ export default function Hourly({ isLoading, hourly }) {
   const today = format(new Date(), "dddd");
   const [selectedDay, setSelectedDay] = useState(today);
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+  const dropdownRef = useRef(null);
+
+  // to focus on the dropdown when it's opened (so that it can be closed w/ onBlur)
+  useEffect(() => {
+    if (isDropdownVisible && dropdownRef.current) {
+      dropdownRef.current.focus();
+    }
+  }, 
+  [isDropdownVisible]);
 
   // to get the weekday name for the 7-day dropdown
   const weekdays = [
@@ -39,23 +48,26 @@ export default function Hourly({ isLoading, hourly }) {
   }
 
   return (
-    <div className="bg-neutral-700 border-1 border-neutral-600 pt-3 pb-2 px-4 rounded-lg mt-6 lg:mt-0 mx-auto lg:mx-0">
+    <div className="bg-neutral-700 border-1 border-neutral-600 pt-3 pb-2 px-4 rounded-lg mt-6 lg:mt-0 mx-auto xl:mx-0">
       <div className="flex justify-between items-center mt-3 mb-2">
-        <h2 className="text-white font-semibold text-lg">Hourly forecast</h2>
+        <h2 className="text-white font-semibold text-xl">Hourly forecast</h2>
 
-        <div className="bg-neutral-600 py-1 pl-3 px-8 flex items-center relative z-0 rounded-md">
-          <button
-            onClick={() => setIsDropdownVisible(!isDropdownVisible)}
-            className="w-full hover:cursor-pointer"
-          >
-            {selectedDay}
-          </button>
+        <button
+          onClick={() => setIsDropdownVisible(!isDropdownVisible)}
+          className="bg-neutral-600 py-1 pl-3 px-8 flex items-center relative z-0 rounded-md hover:cursor-pointer"
+        >
+          {selectedDay}
           {/* ensures the icon doesn’t block clicks */}
           <IconDropdown className="absolute right-2 pointer-events-none" />
 
           {/* to get the current time forecast + the next 7 hours */}
           {isDropdownVisible && (
-            <div className="bg-neutral-700 border-1 border-neutral-600 absolute flex flex-col gap-0.5 top-10 left-0 w-full p-1 rounded-md">
+            <div
+              className="bg-neutral-700 border border-neutral-600 absolute flex flex-col gap-0.5 top-10 left-0 w-full p-1 rounded-md"
+              ref={dropdownRef}
+              tabIndex={-1}
+              onBlur={() => setIsDropdownVisible(false)}
+            >
               <button
                 className="py-1 px-2 block text-start rounded-md hover:bg-neutral-600 hover:cursor-pointer"
                 onClick={() => handleClick(currIndex, today)}
@@ -100,7 +112,7 @@ export default function Hourly({ isLoading, hourly }) {
               </button>
             </div>
           )}
-        </div>
+        </button>
       </div>
       {[
         hourlyIndex,

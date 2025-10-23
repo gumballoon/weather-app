@@ -70,10 +70,10 @@ function App() {
   }, [units, location]);
 
   return (
-    <div className="w-full min-h-min h-screen bg-background text-white p-6">
-      <div className="max-w-[700px] mx-auto xl:max-w-[1350px]">
+    <div className="w-full min-w-[375px] h-full bg-background text-white py-6 px-3">
+      <div className="max-w-[900px] mx-auto xl:max-w-[1350px]">
         <nav className="flex justify-between items-center">
-          <Logo />
+          <Logo className="w-44"/>
           <Units units={units} setUnits={setUnits} />
         </nav>
         {!isError ? (
