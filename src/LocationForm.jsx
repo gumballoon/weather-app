@@ -35,7 +35,9 @@ export default function LocationForm({ setLocation, setIsError, setIsFound }) {
   function handleClick(i) {
     try {
       setLocation({
-        place: `${searchOptions[i].name}, ${searchOptions[i].country}`,
+        place: searchOptions[i].country
+          ? `${searchOptions[i].name}, ${searchOptions[i].country}`
+          : `${searchOptions[i].name}`,
         lat: searchOptions[i].latitude,
         long: searchOptions[i].longitude,
       });
@@ -74,7 +76,7 @@ export default function LocationForm({ setLocation, setIsError, setIsFound }) {
           {isSearchLoading ? (
             <div className="flex items-center py-3 px-4">
               <IconLoading />
-              <p className="ml-2 text-sm">Search in progress</p>  
+              <p className="ml-2 text-sm">Search in progress</p>
             </div>
           ) : (
             <div className="flex flex-col">

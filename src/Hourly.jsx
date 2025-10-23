@@ -26,8 +26,7 @@ export default function Hourly({ isLoading, hourly }) {
     if (isDropdownVisible && dropdownRef.current) {
       dropdownRef.current.focus();
     }
-  }, 
-  [isDropdownVisible]);
+  }, [isDropdownVisible]);
 
   // to get the weekday name for the 7-day dropdown
   const weekdays = [

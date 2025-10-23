@@ -70,7 +70,7 @@ function App() {
   }, [units, location]);
 
   return (
-    <div className="w-full min-w-[375px] h-full bg-background text-white py-6 px-3">
+    <div className="w-full min-w-[375px] h-full min-h-screen bg-background text-white py-6 px-3">
       <div className="max-w-[900px] mx-auto xl:max-w-[1350px]">
         <nav className="flex justify-between items-center">
           <Logo className="w-44"/>
