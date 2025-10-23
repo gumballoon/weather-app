@@ -1,0 +1,37 @@
+@keyframes bounce {
+  0% {
+    margin-top: 20px;
+  }
+  100% {
+    margin-top: 0px;
+  }
+}
+
+.Current .loading span {
+  width: 15px;
+  height: 15px;
+  background-color: white;
+  border-radius: 100%;
+  animation: 1s bounce ease-in-out infinite alternate;
+}
+
+.Current .loading span:nth-of-type(2) {
+  animation-delay: 0.2s;
+}
+
+.Current .loading span:nth-of-type(3) {
+  animation-delay: 0.4s;
+}
+
+.Current .herobox {
+  background-image: url("./assets/bg-today-small.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@media (width >= 64rem) {
+  .herobox {
+    background-image: url("");
+  }
+}
