@@ -1,5 +1,5 @@
 import UnitForm from "./UnitForm";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 
 import IconUnits from "./assets/icon-units.svg?react";
 import IconDropdown from "./assets/icon-dropdown.svg?react";
@@ -12,16 +12,12 @@ export default function Units({ units, setUnits }) {
     else return data;
   };
   const [isDropdownVisible, setIsDropdownVisible] = useState(getInitialData);
-  const dropdownRef = useRef(null);
 
   useEffect(() => {
     localStorage.setItem(
       "isDropdownVisible",
       JSON.stringify(isDropdownVisible)
     );
-    if (isDropdownVisible && dropdownRef.current) {
-      dropdownRef.current.focus();
-    };
   }, [isDropdownVisible]);
 
   function setCurrentUnit(unit, value) {
@@ -52,10 +48,6 @@ export default function Units({ units, setUnits }) {
       {isDropdownVisible && (
         <div
           className="absolute top-12 right-0 w-60 bg-neutral-700 p-2 rounded-md border border-neutral-600 outline-0"
-          ref={dropdownRef}
-          // to make the div focusable
-          tabIndex={-1}
-          onBlur={() => setIsDropdownVisible(false)}
         >
           <button
             className="w-full text-left px-2 py-2 rounded-md border-1 border-transparent hover:cursor-pointer hover:bg-neutral-600"
